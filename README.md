@@ -16,38 +16,6 @@ The scheme constructs a ZK proof of knowledge for the **Rank Syndrome Decoding (
 
 ---
 
-## Overview
-
-### What is proved?
-
-Given a public parity-check matrix `H ∈ GF(2^m)^{(n-k)×n}` and syndrome `s ∈ GF(2^m)^{n-k}`, the prover demonstrates knowledge of a secret error vector `e ∈ GF(2^m)^n` such that:
-
-```
-H · e = s   and   rank_{GF(2)}(e) ≤ r
-```
-
-without revealing `e`.
-
-### Core technique
-
-The rank constraint is handled by decomposing `e` as a **mixed-field matrix product**:
-
-```
-e = X · y
-```
-
-where `X ∈ GF(2)^{n×r}` (base field) and `y ∈ GF(2^m)^r` (extension field).  By **Lemma 1** in the paper, this decomposition implicitly enforces `rank(e) ≤ r`.
-
-The product `X · y` is then computed inside a **(2,3)-secret sharing** MPC-in-the-Head protocol, with each virtual party computing its local cross-term:
-
-```
-e_i = X_i y_i ⊕ X_i y_{i+1} ⊕ X_{i+1} y_i ⊕ R_i ⊕ R_{i+1}
-```
-
-The blinding factors `R_i` cancel cyclically (`R_1⊕R_2 ⊕ R_2⊕R_3 ⊕ R_3⊕R_1 = 0`), ensuring completeness.
-
----
-
 ## Repository structure
 
 ```
