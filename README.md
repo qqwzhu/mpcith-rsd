@@ -1,10 +1,10 @@
-# Limitations and note
+## Limitations and note
 
-Pure Python reference implementation. Not optimized for performance. For production environments, consider using a native implementation (C/Rust) with constant time complexity.
+- **Pure Python reference implementation. Not optimized for performance. For production environments, consider using a native implementation (C/Rust) with constant time complexity.
 
-Constant time cannot be guaranteed. The Python implementation may be vulnerable to time side-channel attacks. Do not use in production systems.
+- **Constant time cannot be guaranteed. The Python implementation may be vulnerable to time side-channel attacks. Do not use in production systems.
 
-Note: This repository provides only a reference implementation of the protocol for research and validation purposes. It is not intended as a benchmark for performance evaluation.
+- **Note: This repository provides only a reference implementation of the protocol for research and validation purposes. It is not intended as a benchmark for performance evaluation.
 
 # MPC-in-the-Head ZK Proof for Rank Syndrome Decoding
 
@@ -190,15 +190,6 @@ Expected proof size at 128-bit security: **≈ 65.2 KB** (Equation 7 in the pape
 | **3-Special Soundness** | Any cheating prover succeeds with prob. ≤ 2/3 per round (Theorem 2) |
 | **SHVZK** | Polynomial-time simulator exists; witness not leaked (Theorem 3) |
 | **NIZK (ROM)** | Fiat-Shamir in Random Oracle Model gives computational soundness |
-
----
-
-## Limitations and notes
-
-- **Pure-Python reference implementation.** Not optimised for performance. For production use, consider a native implementation (C/Rust) with constant-time operations.
-- **Constant-time not guaranteed.** The Python implementation may be vulnerable to timing side-channels. Do not use in production systems.
-- **GF(2^m) arithmetic** is implemented via schoolbook polynomial multiplication with a fixed irreducible polynomial. Supported degrees: 4, 8, 16, 32, 41, 64.
-- The hash function is **SHA3-256** (Python `hashlib.sha3_256`).
 
 ---
 
